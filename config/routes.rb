@@ -3,14 +3,17 @@ Rails.application.routes.draw do
   root to: 'main#home'
 
   get 'home', to: 'main#home' # home_path for erb
-  get 'add', to: 'main#add'
-  get 'surprise', to: 'main#surprise'
+  get 'add', to: 'recipes#new'
+  get 'surprise', to: 'main#surprise' #TEST###############
   get 'view', to: 'main#view'
 
   get 'login', to: 'main#login'
 
   get 'signup', to: 'registration#new'
   post 'signup', to: 'registration#create'
+  
+  get 'post', to: 'recipes#new'
+  post 'post', to: 'recipes#create'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
