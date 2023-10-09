@@ -14,7 +14,10 @@
   </head>
 
   <body>
-    <%= render partial: 'layouts/navbar' %>
-    <%= yield %>
+    <div class="container-fluid row justify-content-center">
+      <%= render partial: 'layouts/navbar' %>
+      <%= render partial: 'layouts/flash'%>
+      <%= yield %>
+    </div>
   </body>
 </html>
