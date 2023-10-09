@@ -1,4 +1,15 @@
 
+<% if flash[:notice].present? %>
+  <div class="alert alert-success">
+    <%= flash[:notice] %>
+  </div>
+<% end %>
+<% if flash[:alert].present? %>
+  <div class="alert alert-danger">
+    <%= flash[:alert] %>
+  </div>
+<% end %>
+
 <div class="d-flex align-items-center justify-content-center">
     <h1>Main#home</h1>
 </div>
@@ -6,3 +17,9 @@
     Welcome: <%= @user.username%>
 <%end%>
 <p>Find me in app/views/main/home.html.erb</p>
+
+<div class="position-absolute bottom-0 end-0">
+    <button type="button" span class="btn btn btn-warning">
+        <%= link_to "ADMIN", admin_path%>  
+    </button>
+</div>
