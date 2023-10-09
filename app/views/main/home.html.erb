@@ -17,9 +17,10 @@
     Welcome: <%= @user.username%>
 <%end%>
 <p>Find me in app/views/main/home.html.erb</p>
-
-<div class="position-absolute bottom-0 end-0">
-    <button type="button" span class="btn btn btn-warning">
-        <%= link_to "ADMIN", admin_path%>  
-    </button>
-</div>
+<% if @user && @user.admin%>
+    <div class="position-absolute bottom-0 end-0">
+        <button type="button" span class="btn btn btn-warning">
+            <%= link_to "ADMIN", admin_path%>  
+        </button>
+    </div>
+<%end%>
