@@ -9,52 +9,121 @@
             <br>
         </div>
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<style>
+  /* Apply some basic styles to the textarea to make it look more like an input box */
+  textarea {
+    width: 100%; /* Make the textarea expand to the full width of its container */
+    border: 1px solid #ccc; /* Add a border for a similar appearance to an input box */
+    padding: 5px; /* Add some padding for spacing inside the textarea */
+    font-size: 14px; /* Set the font size to match your design */
+  }
+</style>
+
+<script>
+function update_ing_Table() {
+  
+  var table = document.getElementById("ingredients");
+  var row = table.insertRow();
+  var cell1 = row.insertCell(0);
+  var cell2 = row.insertCell(1);
+  var input1 = document.createElement("input");
+  input1.type = "text";
+  input1.name = "ingredient_name";
+  cell1.appendChild(input1);
+  var input2 = document.createElement("input");
+  input2.type = "text";
+  input2.name = "amount";
+  cell2.appendChild(input2);
+  ing_count++;
+
+}
+</script>
+<script>
+function delete_ing_Table() {
+  
+  
+  if (ing_count>1){
+    document.getElementById("ingredients").deleteRow(-1);
+    ing_count--;
+  }
+
+}
+</script>
+
+<script>
+function update_ins_Table() {
+  
+  var table = document.getElementById("instructions");
+  var row = table.insertRow();
+  var cell1 = row.insertCell(0);
+  var cell2 = row.insertCell(1);
+  cell1.innerHTML = ins_count;
+  ins_count++;
+  var input2 = document.createElement("textarea");
+  input2.type = "text";
+  input2.name = "instructions[input]";
+  cell2.appendChild(input2);
+
+
+}
+</script>
+
+<script>
+function delete_ins_Table() {
+  
+  
+  if (ins_count>2){
+    document.getElementById("instructions").deleteRow(-1);
+    ins_count--;
+  }
+
+}
+</script>
 
 <div id="ingredients-contain" class="ui-widget">
   <h1>Ingredients:</h1>
   <table id="ingredients" class="table">
 <thead class="thead-dark">
     <tr>
-      <th scope="col">Ingredients</th>
+      <th scope="col">Ingredient</th>
       <th scope="col">Amount</th>
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <th scope="row">Ingredient 1</th>
-       <td> </td>
-    </tr>
-  </tbody>
-    <tbody>
-    <tr>
-      <th scope="row">Ingredient 2</th>
-       <td></td>
-    </tr>
-  </tbody>
-    <tbody>
-    <tr>
-      <th scope="row">Ingredient 3</th>
-       <td></td>
-    </tr>
-  </tbody>
-    <tbody>
-    <tr>
-      <th scope="row">Ingredient 4</th>
-       <td></td>
-    </tr>
-  </tbody>
-    <tbody>
-    <tr>
-      <th scope="row">Ingredient 5</th>
-       <td></td>
-    </tr>
-  </tbody>
+  <tr>
+    <td> <input name="ingredient[iname]"> </td>
+    <td> <input name="ingredient[amount]"> </td>
+  </tr>
+  <tr>
+   <td> <input name="ingredient[iname]"> </td>
+    <td> <input name="ingredient[amount]"> </td>
+  </tr>
+  <tr>
+    <td> <input name="ingredient[iname]"> </td>
+    <td> <input name="ingredient[amount]"> </td>
+  </tr>
+  <tr>
+    <td> <input name="ingredient[iname]"> </td>
+    <td> <input name="ingredient[amount]"> </td>
+  </tr>
+  <tr>
+    <td> <input name="ingredient[iname]"> </td>
+    <td> <input name="ingredient[amount]"> </td>
+  </tr>
+      </tbody>
   </table>
-  <button id="add-ingredient" class="btn btn-primary" type="submit">Add Ingredient</button>
+  <button id="add-ingredient" class="btn btn-primary" type="button" onclick="update_ing_Table()">Add Ingredient</button>
+  <button id="remove-ingredient" class="btn btn-primary" type="button" onclick="delete_ing_Table()">Remove Ingredient</button>
+
 </div>
 
 <br>
 <br>
+<script>
+var ing_count = 5;
+var ins_count = 6;
+</script>
 <div id="instructions-contain" class="ui-widget">
   <h1>Instructions:</h1>
   <table id="instructions" class="table">
@@ -66,32 +135,32 @@
   </thead>
   <tbody>
     <tr>
-      <th scope="row">1</th>
-       <td></td>
+      <td>1</td>
+      <td> <textarea name="instructions[input]" rows="2" cols="50"></textarea> </td>
     </tr>
   </tbody>
     <tbody>
     <tr>
-      <th scope="row">2</th>
-       <td></td>
+      <td>2</td>
+      <td> <textarea name="instructions[input]" rows="2" cols="50"></textarea> </td>
     </tr>
   </tbody>
     <tbody>
     <tr>
-      <th scope="row">3</th>
-       <td></td>
+      <td>3</td>
+      <td> <textarea name="instructions[input]" rows="2" cols="50"></textarea> </td>
     </tr>
   </tbody>
     <tbody>
     <tr>
-      <th scope="row">4</th>
-       <td></td>
+      <td>4</td>
+      <td> <textarea name="instructions[input]" rows="2" cols="50"></textarea> </td>
     </tr>
   </tbody>
     <tbody>
     <tr>
-      <th scope="row">5</th>
-       <td></td>
+      <td>5</td>
+      <td> <textarea name="instructions[input]" rows="2" cols="50"></textarea> </td>
     </tr>
   </tbody>
   </table>
@@ -99,17 +168,16 @@
 </div>
 
 
-<button id="add-intruction" class="btn btn-primary" type="submit">Add Instruction</button>
+
+<button id="add-intruction" class="btn btn-primary" type="button" onclick="update_ins_Table()">Add Instruction</button>
+<button id="remove-intruction" class="btn btn-primary" type="button" onclick="delete_ins_Table()">Remove Instruction</button>
 <br>
 <br>
-</body>
 </div>
 
-        <div class="text-center">
-            <div class="mb-3">
-                <%= form.submit "Submit Recipe", class:"btn btn-success"%>
-            </div>
-        </div>
+<div class="text-center">
+    <div class="mb-3">
+        <%= form.submit "Submit Recipe", class:"btn btn-success"%>
+    </div>
+</div>
 <% end %>
-
-
