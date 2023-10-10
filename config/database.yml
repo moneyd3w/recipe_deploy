@@ -17,6 +17,7 @@ default: &default
   encoding: unicode
   username: liamduncan
   password: password # my default pass goes here
+
   host: localhost
 
   # For details on connection pooling, see Rails configuration guide
