@@ -1,0 +1,115 @@
+<div class="container col-md-4">
+    <div class="text-center">
+        <h1>Upload Recipe</h1>
+    </div>
+    <%= form_with model: @recipe_info do |form| %> <br>
+        <div class="mb-3">
+            <%= form.label :recipe_Name%>
+            <%= form.text_field :recipe_Name, class: "form-control"%>
+            <br>
+        </div>
+
+
+<div id="ingredients-contain" class="ui-widget">
+  <h1>Ingredients:</h1>
+  <table id="ingredients" class="table">
+<thead class="thead-dark">
+    <tr>
+      <th scope="col">Ingredients</th>
+      <th scope="col">Amount</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">Ingredient 1</th>
+       <td> </td>
+    </tr>
+  </tbody>
+    <tbody>
+    <tr>
+      <th scope="row">Ingredient 2</th>
+       <td></td>
+    </tr>
+  </tbody>
+    <tbody>
+    <tr>
+      <th scope="row">Ingredient 3</th>
+       <td></td>
+    </tr>
+  </tbody>
+    <tbody>
+    <tr>
+      <th scope="row">Ingredient 4</th>
+       <td></td>
+    </tr>
+  </tbody>
+    <tbody>
+    <tr>
+      <th scope="row">Ingredient 5</th>
+       <td></td>
+    </tr>
+  </tbody>
+  </table>
+  <button id="add-ingredient" class="btn btn-primary" type="submit">Add Ingredient</button>
+</div>
+
+<br>
+<br>
+<div id="instructions-contain" class="ui-widget">
+  <h1>Instructions:</h1>
+  <table id="instructions" class="table">
+<thead class="thead-dark">
+    <tr>
+      <th scope="col"></th>
+      <th scope="col">Instruction</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">1</th>
+       <td></td>
+    </tr>
+  </tbody>
+    <tbody>
+    <tr>
+      <th scope="row">2</th>
+       <td></td>
+    </tr>
+  </tbody>
+    <tbody>
+    <tr>
+      <th scope="row">3</th>
+       <td></td>
+    </tr>
+  </tbody>
+    <tbody>
+    <tr>
+      <th scope="row">4</th>
+       <td></td>
+    </tr>
+  </tbody>
+    <tbody>
+    <tr>
+      <th scope="row">5</th>
+       <td></td>
+    </tr>
+  </tbody>
+  </table>
+
+</div>
+
+
+<button id="add-intruction" class="btn btn-primary" type="submit">Add Instruction</button>
+<br>
+<br>
+</body>
+</div>
+
+        <div class="text-center">
+            <div class="mb-3">
+                <%= form.submit "Submit Recipe", class:"btn btn-success"%>
+            </div>
+        </div>
+<% end %>
+
+
