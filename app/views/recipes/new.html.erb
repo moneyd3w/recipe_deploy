@@ -1,6 +1,6 @@
 <div class="container col-md-4">
     <div class="text-center">
-        <h1>Upload Recipe</h1>
+        <h1 id="heading"> Upload Recipe</h1>
     </div>
     <%= form_with model: @recipe_info do |form| %> <br>
         <div class="mb-3">
@@ -9,7 +9,7 @@
             <br>
         </div>
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 <style>
   /* Apply some basic styles to the textarea to make it look more like an input box */
   textarea {
@@ -20,66 +20,7 @@
   }
 </style>
 
-<script>
-function update_ing_Table() {
-  
-  var table = document.getElementById("ingredients");
-  var row = table.insertRow();
-  var cell1 = row.insertCell(0);
-  var cell2 = row.insertCell(1);
-  var input1 = document.createElement("input");
-  input1.type = "text";
-  input1.name = "ingredient_name";
-  cell1.appendChild(input1);
-  var input2 = document.createElement("input");
-  input2.type = "text";
-  input2.name = "amount";
-  cell2.appendChild(input2);
-  ing_count++;
 
-}
-</script>
-<script>
-function delete_ing_Table() {
-  
-  
-  if (ing_count>1){
-    document.getElementById("ingredients").deleteRow(-1);
-    ing_count--;
-  }
-
-}
-</script>
-
-<script>
-function update_ins_Table() {
-  
-  var table = document.getElementById("instructions");
-  var row = table.insertRow();
-  var cell1 = row.insertCell(0);
-  var cell2 = row.insertCell(1);
-  cell1.innerHTML = ins_count;
-  ins_count++;
-  var input2 = document.createElement("textarea");
-  input2.type = "text";
-  input2.name = "instructions[input]";
-  cell2.appendChild(input2);
-
-
-}
-</script>
-
-<script>
-function delete_ins_Table() {
-  
-  
-  if (ins_count>2){
-    document.getElementById("instructions").deleteRow(-1);
-    ins_count--;
-  }
-
-}
-</script>
 
 <div id="ingredients-contain" class="ui-widget">
   <h1>Ingredients:</h1>
@@ -116,14 +57,12 @@ function delete_ins_Table() {
   <button id="add-ingredient" class="btn btn-primary" type="button" onclick="update_ing_Table()">Add Ingredient</button>
   <button id="remove-ingredient" class="btn btn-primary" type="button" onclick="delete_ing_Table()">Remove Ingredient</button>
 
+
 </div>
 
 <br>
 <br>
-<script>
-var ing_count = 5;
-var ins_count = 6;
-</script>
+
 <div id="instructions-contain" class="ui-widget">
   <h1>Instructions:</h1>
   <table id="instructions" class="table">
@@ -173,11 +112,76 @@ var ins_count = 6;
 <button id="remove-intruction" class="btn btn-primary" type="button" onclick="delete_ins_Table()">Remove Instruction</button>
 <br>
 <br>
-</div>
-
-<div class="text-center">
     <div class="mb-3">
         <%= form.submit "Submit Recipe", class:"btn btn-success"%>
     </div>
 </div>
+
+
+
+
+
 <% end %>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+  // functions for ingredients
+  function update_ing_Table() {
+    var table = document.getElementById("ingredients");
+    var row = table.insertRow();
+    var cell1 = row.insertCell(0);
+    var cell2 = row.insertCell(1);
+    var input1 = document.createElement("input");
+    input1.type = "text";
+    input1.name = "ingredient_name";
+    cell1.appendChild(input1);
+    var input2 = document.createElement("input");
+    input2.type = "text";
+    input2.name = "amount";
+    cell2.appendChild(input2);
+    ing_count++;
+
+  }
+
+  function delete_ing_Table() {
+    
+    
+    if (ing_count>1){
+      document.getElementById("ingredients").deleteRow(-1);
+      ing_count--;
+    }
+
+  }
+
+
+  //functions for instructions 
+  function update_ins_Table() {
+    
+    var table = document.getElementById("instructions");
+    var row = table.insertRow();
+    var cell1 = row.insertCell(0);
+    var cell2 = row.insertCell(1);
+    cell1.innerHTML = ins_count;
+    ins_count++;
+    var input2 = document.createElement("textarea");
+    input2.type = "text";
+    input2.name = "instructions[input]";
+    cell2.appendChild(input2);
+
+
+  }
+  function delete_ins_Table() {
+    
+    
+    if (ins_count>2){
+      document.getElementById("instructions").deleteRow(-1);
+      ins_count--;
+    }
+
+  }
+
+  //variables for keeping track of ingredients and instructions 
+  var ing_count = 5;
+  var ins_count = 6;
+</script>

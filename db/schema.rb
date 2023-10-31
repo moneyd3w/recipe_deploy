@@ -10,11 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_10_09_214552) do
+ActiveRecord::Schema[7.1].define(version: 2023_10_19_202526) do
   # These are extensions that must be enabled in order to support this database
+  enable_extension "adminpack"
   enable_extension "plpgsql"
 
-
+  create_table "ingredients", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "my_type_column", null: false
+    t.string "image_type", default: "empty"
+    t.text "recipe", null: false
+    t.text "instructions", null: false
+    t.text "description", null: false
+    t.bigint "user_infos_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_infos_id"], name: "index_ingredients_on_user_infos_id"
+  end
 
   create_table "user_infos", force: :cascade do |t|
     t.string "username", null: false
@@ -25,4 +37,5 @@ ActiveRecord::Schema[7.1].define(version: 2023_10_09_214552) do
     t.index ["username"], name: "unique_usernames", unique: true
   end
 
+  add_foreign_key "ingredients", "user_infos", column: "user_infos_id", on_delete: :cascade
 end

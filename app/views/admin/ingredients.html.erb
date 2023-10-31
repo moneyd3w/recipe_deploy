@@ -1,4 +1,4 @@
-<h1>ADMIN-ONLY (USERS)</h1>
+<h1>ADMIN-ONLY (INGREDIENTS)</h1>
 <% if flash[:error].present? %>
     <div class="alert alert-warning">
         <%= flash[:error] %>
@@ -11,9 +11,9 @@
         <a href="<%= adminingredient_path %>" class="btn btn-outline-secondary">Ingredients</a>
     </div>
     <div class="input-group">
-        <div class="input-group-text" id="btnGroupAddon">Username</div>
-        <%= form_tag(adminuser_path, method: :get, class: "d-flex justify-content-between") do %>
-            <%= text_field_tag(:param1, nil, class: "form-control", placeholder: "Input username here") %>
+        <div class="input-group-text" id="btnGroupAddon">Recipe Name</div>
+        <%= form_tag(adminingredient_path, method: :get, class: "d-flex justify-content-between") do %>
+            <%= text_field_tag(:param1, nil, class: "form-control", placeholder: "Input recipe name here") %>
             <%= submit_tag("Search", class: "btn btn-primary") %>
         <% end %>
     </div>
@@ -22,18 +22,19 @@
 <table class="table table-bordered table-striped">   
     <tr>   
         <th>ID</th>   
-        <th>username</th>   
+        <th>name</th> 
+        <th>type</th>  
         <th>Created At</th>   
         
     </tr>   
     
-    <% @user_list.each do |user_infos| %>   
-        <% unless user_infos.admin? %>
+    <% @ingredient_list.each do |ingredients| %>   
+        <% unless ingredients.admin? %>
             <tr>   
-            <td><%= user_infos.id %></td>   
-            <td><%= user_infos.username %></td>   
-            <td><%= user_infos.created_at %></td>   
-            <td><%= button_to 'Delete', admindeluser_path(param1: user_infos.id), method: :delete, data: { turbo_confirm: "Are you sure you want to permanantly delete this user account?"} %></td>   
+            <td><%= ingredients.id %></td>   
+            <td><%= ingredients.name %></td>   
+            <td><%= ingredients.created_at %></td>   
+            <td><%= button_to 'Delete', admindelingredient_path(param1: ingredients.id), method: :delete, data: { turbo_confirm: "Are you sure you want to permanantly delete this recipe?"} %></td>   
                 
             </tr>  
         <% end %> 
