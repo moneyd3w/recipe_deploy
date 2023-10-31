@@ -21,7 +21,7 @@ class AdminController < ApplicationController
     end 
     
     def destroyi
-        @ingredient_list = UserInfo.find(params[:param1])   
+        @ingredient_list = Ingredient.find(params[:param1])   
         if @ingredient_list.destroy   
           flash[:notice] = 'Recipe deleted'   
           redirect_to adminingredient_path   
