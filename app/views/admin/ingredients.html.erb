@@ -22,8 +22,8 @@
 <table class="table table-bordered table-striped">   
     <tr>   
         <th>ID</th>   
-        <th>name</th> 
-        <th>type</th>  
+        <th>userID</th> 
+        <th>name</th>  
         <th>Created At</th>   
         
     </tr>   
@@ -31,6 +31,7 @@
     <% @ingredient_list.each do |ingredients| %>   
         <tr>   
         <td><%= ingredients.id %></td>   
+        <td><%= ingredients.user_infos_id %></td>  
         <td><%= ingredients.name %></td>   
         <td><%= ingredients.created_at %></td>   
         <td><%= button_to 'Delete', admindelingredient_path(param1: ingredients.id), method: :delete, data: { turbo_confirm: "Are you sure you want to permanantly delete this recipe?"} %></td>   

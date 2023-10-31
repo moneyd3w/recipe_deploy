@@ -37,6 +37,7 @@ class IngredientsController < ApplicationController
 
   def create # add page
     @ingredient = Ingredient.new(ingredient_params)
+    @ingredient.user_infos_id = @user.id
 
     respond_to do |format|
       if @ingredient.save

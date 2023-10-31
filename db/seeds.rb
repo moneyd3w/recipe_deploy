@@ -3,4 +3,3 @@
 # The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
 
 # admin
-UserInfo.create(username: 'admin', password: 'admin123', email: 'mpa102@sfu.ca', admin: true)
