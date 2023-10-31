@@ -29,14 +29,11 @@
     </tr>   
     
     <% @ingredient_list.each do |ingredients| %>   
-        <% unless ingredients.admin? %>
-            <tr>   
-            <td><%= ingredients.id %></td>   
-            <td><%= ingredients.name %></td>   
-            <td><%= ingredients.created_at %></td>   
-            <td><%= button_to 'Delete', admindelingredient_path(param1: ingredients.id), method: :delete, data: { turbo_confirm: "Are you sure you want to permanantly delete this recipe?"} %></td>   
-                
-            </tr>  
-        <% end %> 
+        <tr>   
+        <td><%= ingredients.id %></td>   
+        <td><%= ingredients.name %></td>   
+        <td><%= ingredients.created_at %></td>   
+        <td><%= button_to 'Delete', admindelingredient_path(param1: ingredients.id), method: :delete, data: { turbo_confirm: "Are you sure you want to permanantly delete this recipe?"} %></td>   
+        </tr>  
     <% end %>   
 </table>  
