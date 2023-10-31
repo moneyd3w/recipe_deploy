@@ -78,7 +78,7 @@ test:
 #
 production:
   <<: *default
-  database: postgresql_g85j
-  username: mysiterecipeanon
-  password: PpvQMf0Wl4EZ9zXhJHsiKELWltbIvEQO
+  database: recipe_anonymous2
+  username: recipe_anonymous2_user
+  password: cLMRZA2vEQ7ZrFFpOrrpZIPUMHWaTEp4
   url: <%= ENV['DATABASE_URL'] %>
