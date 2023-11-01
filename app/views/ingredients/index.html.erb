@@ -12,7 +12,7 @@
             <%= image_tag "food1.jpg" %>
             <div class="card-body">
               <h5 class="card-title"><%= ingredient.name %></h5>
-              <p class="card-text"><%= ingredient.description %></p>
+              <p class="card-text"><%= truncate(ingredient.description, :length => 125) %></p>
               <div class="btn-group">
                 <%= link_to "View", ingredient, class: "btn btn-sm btn-outline-secondary", role: "button" %>
               </div>

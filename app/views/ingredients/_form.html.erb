@@ -1,7 +1,7 @@
 <%= form_with(model: ingredient) do |form| %>
     <% if ingredient.errors.any? %>
-      <div style="color: red">
-        <h2><%= pluralize(ingredient.errors.count, "error") %> prohibited this ingredient from being saved:</h2>
+      <div class="alert alert-danger">
+        <h2><%= pluralize(ingredient.errors.count, "issue") %> when creating your recipe:</h2>
   
         <ul>
           <% ingredient.errors.each do |error| %>
@@ -13,28 +13,28 @@
   
   <form>
   <div class="mb-3">
-    <label for="exampleInputEmail1" class="form-label"><%= form.label :name, style: "display: block" %></label>
+    <label for="exampleInputEmail1" class="form-label"><%= form.label :Name, style: "display: block" %></label>
     <%= form.text_field :name , class:"form-control"%>
   </div>
   <div class="mb-3">
-    <label for="exampleInputEmail1" class="form-label"><%= form.label :my_type_column, style: "display: block" %></label>
+    <label for="exampleInputEmail1" class="form-label"><%= form.label :Type, style: "display: block" %></label>
     <%= form.text_field :my_type_column , class:"form-control"%>
-  </div>
   <div class="mb-3">
-    <label for="exampleInputEmail1" class="form-label"><%= form.label :image_type, style: "display: block" %></label>
+    <label for="exampleInputEmail1" class="form-label"><%= form.label :Image, style: "display: block" %></label>
     <%= form.text_field :image_type , class:"form-control"%>
   </div>
   <div class="mb-3">
-    <label for="exampleInputEmail1" class="form-label"><%= form.label :description, style: "display: block" %></label>
-    <%= form.text_field :description , class:"form-control"%>
+    <label for="exampleInputEmail1" class="form-label"><%= form.label :Description, style: "display: block" %></label>
+    <%= form.text_area :description, class: "form-control", style: "height: 150px; overflow-y: scroll;" %>
   </div>
   <div class="mb-3">
-    <label for="exampleInputEmail1" class="form-label"><%= form.label :recipe, style: "display: block" %></label>
-    <%= form.text_field :recipe , class:"form-control"%>
+    <label for="exampleInputEmail1" class="form-label"><%= form.label :Ingredients, style: "display: block" %></label>
+    <%= form.text_area :recipe, class: "form-control", style: "height: 150px; overflow-y: scroll;" %>
   </div>
   <div class="mb-3">
-    <label for="exampleInputEmail1" class="form-label"><%= form.label :instructions, style: "display: block" %></label>
-    <%= form.text_field :instructions , class:"form-control"%>
+    <label for="exampleInputEmail1" class="form-label"><%= form.label :Instructions, style: "display: block" %></label>
+    <%= form.text_area :instructions, class: "form-control", style: "height: 150px; overflow-y: scroll;" %>
+
   </div>
   <button type="submit" class="btn btn-primary">Submit</button>
   </form>

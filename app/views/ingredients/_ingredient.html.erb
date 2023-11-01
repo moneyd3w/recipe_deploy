@@ -5,10 +5,15 @@
       <div class="card shadow-sm">
       <%= image_tag "food1.jpg" %>
       <div class="card-body">
-          <h5 class="card-title"><%= ingredient.name %></h5>
-          <p class="card-text"><%= ingredient.recipe %></p>
-          <br></br>
-          <p class="card-text"><%= ingredient.instructions %></p>
+          <h3 class="card-title"><%= ingredient.name %></h3>
+          <h5> Ingredients </h5>
+            <div class = "whitespace-pre">
+              <p class="card-text"><%= simple_format(ingredient.recipe) %></p>
+            </div>
+          <h5> Instructions </h5>
+            <div class = "whitespace-pre">
+              <p class="card-text"><%= simple_format(ingredient.instructions) %></p>
+            </div>
           </div>
       </div>
       </div>

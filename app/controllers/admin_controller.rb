@@ -12,22 +12,18 @@ class AdminController < ApplicationController
     def destroyu   
         @user_list = UserInfo.find(params[:param1])   
         if @user_list.destroy   
-          flash[:notice] = 'User deleted'   
-          redirect_to adminuser_path   
+          redirect_to adminuser_path, notice: 'User deleted'
         else   
-          flash[:error] = 'Failed to delete this user'   
-          render :users 
+          redirect_to adminuser_path, error: 'Failed to delete this user'   
         end   
     end 
     
     def destroyi
         @ingredient_list = Ingredient.find(params[:param1])   
         if @ingredient_list.destroy   
-          flash[:notice] = 'Recipe deleted'   
-          redirect_to adminingredient_path   
+          redirect_to adminingredient_path, notice: 'Recipe deleted' 
         else   
-          flash[:error] = 'Failed to delete this recipe'   
-          render :users 
+          redirect_to adminingredient_path, error: 'Failed to delete this recipe'  
         end 
     end
 

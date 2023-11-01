@@ -5,21 +5,6 @@ class IngredientsController < ApplicationController
   end
   
   def show
-    # # set params from the view page
-    # param1_c = params[:param1]
-    # param2_c = params[:param2]
-
-    # query = Ingredient.all
-
-    # if param1.present?
-    #   query = query.where(custom_param1: param1_c)
-    # end
-
-    # if param2.present?
-    #   query = query.where(custom_param2: param2_c)
-    # end
-
-    # @ingredient = query
   end
 
   def newest
@@ -29,7 +14,11 @@ class IngredientsController < ApplicationController
   end
 
   def new
-    @ingredient = Ingredient.new
+    if session[:user_id].nil?
+      redirect_to signin_path, alert: "You must first be logged in to access that page"
+    else
+      @ingredient = Ingredient.new
+    end
   end
 
   def edit

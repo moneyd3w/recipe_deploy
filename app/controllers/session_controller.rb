@@ -8,8 +8,7 @@ class SessionController < ApplicationController
             session[:user_id] = user.id
             redirect_to root_path, notice: "Logged in successfully"
         else
-            flash[:alert] = "Invalid username or password"
-            render :new
+            redirect_to signin_path, alert: "Invalid Username or Password"
         end
     end
 
@@ -21,7 +20,7 @@ class SessionController < ApplicationController
 
     def view
         if session[:user_id].nil?
-            redirect_to signup_path, alert: "You must first be logged in to access that page"
+            redirect_to signin_path, alert: "You must first be logged in to access that page"
         elsif UserInfo.find(session[:user_id]).admin?
             redirect_to home_path, alert: "Admins do not have access to this page to avoid account alterations."
         end
