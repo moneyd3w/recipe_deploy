@@ -39,7 +39,7 @@ class AdminController < ApplicationController
 
     def filtered_ingredient(name)
         if name.present?
-            Ingredient.where("username LIKE ?", "%#{name}%")
+            Ingredient.where("name LIKE ?", "%#{name}%")
         else
             Ingredient.all
         end
