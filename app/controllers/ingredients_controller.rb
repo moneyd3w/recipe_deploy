@@ -3,7 +3,7 @@ class IngredientsController < ApplicationController
   def index
     @ingredients = Ingredient.all
     if params[:param1].present?
-      @ingredients = filtered_ingredient(params[:param1], params[:param2])
+      @ingredients = filtered_ingredient(params[:param1])
     end
     if params[:param2].present? and !@ingredients.nil? and params[:param2] != 'Any'
       @ingredients = @ingredients.where(my_type_column: params[:param2])
