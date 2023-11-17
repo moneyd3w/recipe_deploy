@@ -2,11 +2,11 @@ class AdminController < ApplicationController
     before_action :require_admin
 
     def users
-        @user_list = filtered_users(params[:param1])
+        @user_list = filtered_users(params[:param1]).order(created_at: :asc)
     end
 
     def ingredients
-        @ingredient_list = filtered_ingredient(params[:param1])
+        @ingredient_list = filtered_ingredient(params[:param1]).order(created_at: :asc)
     end
 
     def destroyu   
@@ -25,6 +25,16 @@ class AdminController < ApplicationController
         else   
           redirect_to adminingredient_path, error: 'Failed to delete this recipe'  
         end 
+    end
+
+    def setingredient
+        set_ingredient = Ingredient.find(params[:param2])
+        if set_ingredient.featured?
+            set_ingredient.update(featured: false)
+        else
+            set_ingredient.update(featured: true)
+        end
+        redirect_to adminingredient_path, notice: 'Ingredient recommendation set: ' + set_ingredient.name  
     end
 
     private

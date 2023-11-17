@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :recipeeees
   resources :ingredients
 
   # set home to root and set sidepages so you dont need /main/...
@@ -8,14 +7,17 @@ Rails.application.routes.draw do
   # main pages (for all logged in users)
   get 'home', to: 'main#home' # home_path for erb
   get 'add', to: 'ingredients#new'
-  get 'surprise', to: 'main#surprise' #TEST###############
   get 'view', to: 'ingredients#index'
+
+  get 'surprise', to: 'main#surprise' 
+  get 'randingredient', to: 'main#randingredient'
 
   # admin page (admin == true)
   get 'adminuser', to: 'admin#users'
   get 'adminingredient', to: 'admin#ingredients'
   delete 'admindeluser', to: 'admin#destroyu'
   delete 'admindelingredient', to: 'admin#destroyi'
+  post 'adminsetingredient/:param2', to: 'admin#setingredient', as: 'adminsetingredient'
 
   # account management
   get 'signup', to: 'registration#new'
@@ -29,6 +31,9 @@ Rails.application.routes.draw do
 
   get 'post', to: 'recipes#new'
   post 'post', to: 'recipes#create'
+
+  # ingredient
+  get 'ingredientview', to: 'ingredients#index'
 
   # might change later to same as others
 

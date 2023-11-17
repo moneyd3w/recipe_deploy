@@ -1,9 +1,13 @@
-<h1>New recipe</h1>
+<div class="container col-md-7">
+  <div class="text-center">
+  <h1>New recipe</h1>
+  </div>
 
-<%= render "form", ingredient: @ingredient %>
+  <%= render "form", ingredient: @ingredient %>
 
-<br>
+  <br>
 
-<div>
-  <%= link_to "Back to Recipes", ingredients_path %>
+  <div class="text-center">
+    <%= link_to "Back to Recipes", ingredients_path, class: "btn btn-warning" %>
+  </div>
 </div>

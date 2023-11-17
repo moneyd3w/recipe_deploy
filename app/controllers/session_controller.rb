@@ -24,6 +24,7 @@ class SessionController < ApplicationController
         elsif UserInfo.find(session[:user_id]).admin?
             redirect_to home_path, alert: "Admins do not have access to this page to avoid account alterations."
         end
+        @ingredients = Ingredient.all
     end
 
     def destroyu   
@@ -32,8 +33,9 @@ class SessionController < ApplicationController
           flash[:notice] = 'User deleted'   
           redirect_to home_path   
         else   
-          flash[:error] = 'Failed to delete this user'   
-          render :users 
+            redirect_to account_path, error: 'Failed to delete this account'
         end   
     end 
+    
+      
 end

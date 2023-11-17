@@ -1,23 +1,44 @@
 <div id="<%= dom_id ingredient %>">
-
-<div class="row">
-  <div class="col">
-      <div class="card shadow-sm">
-      <%= image_tag "food1.jpg" %>
-      <div class="card-body">
-          <h3 class="card-title"><%= ingredient.name %></h3>
-          <h5> Ingredients </h5>
-            <div class = "whitespace-pre">
-              <p class="card-text"><%= simple_format(ingredient.recipe) %></p>
-            </div>
-          <h5> Instructions </h5>
-            <div class = "whitespace-pre">
-              <p class="card-text"><%= simple_format(ingredient.instructions) %></p>
-            </div>
-          </div>
+  <div class="container col-md-7">
+  <h1 class="text-center">
+    <%= ingredient.name %>
+  </h1>
+  <br>
+  <div class="card shadow-sm text-light bg-dark" >
+    <%= image_tag ingredient.user_shot_url %>
+  </div>
+  </div>
+</div>
+<br>
+<div class="container col-md-7">
+<div class="accordion" id="accordionExample">
+  <div class="accordion-item">
+    <h2 class="accordion-header">
+      <button class="accordion-button bg-dark text-light" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+        Ingredients
+      </button>
+    </h2>
+    <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+      <div class="accordion-body overflow-auto" style="max-width: 100%;">
+        <div class = "whitespace-pre">
+          <p class="card-text"><%= simple_format(ingredient.recipe) %></p>
+        </div>
       </div>
+    </div>
+  </div>
+  <div class="accordion-item">
+    <h2 class="accordion-header">
+      <button class="accordion-button collapsed bg-dark text-light" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+        Instructions
+      </button>
+    </h2>
+    <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+      <div class="accordion-body overflow-auto" style="max-width: 100%;">
+        <div class = "whitespace-pre">
+          <p class="card-text"><%= simple_format(ingredient.instructions) %></p>
+        </div>
       </div>
+    </div>
   </div>
 </div>
 </div>
-

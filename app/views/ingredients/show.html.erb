@@ -1,15 +1,22 @@
-<p style="color: green"><%= notice %></p>
-  <div class="btn-group">
-    <%= link_to "Back to Other Recipes", ingredients_path, class: "btn btn-primary" %>
-  </div>
+<% if flash[:notice].present? %>
+    <div class="alert alert-success">
+        <%= flash[:notice] %>
+    </div>
+<% end %>
+
+<div class="btn-group btn-dark">
+  <%= link_to "Back to Other Recipes", ingredients_path, class: "btn btn-dark" %>
+</div>
+
 <%= render @ingredient %>
 
-<div>
+<br>
 
+<div class="text-center">
   <%if  @user != nil && @user.id == @ingredient.user_infos_id%>
-    <div class="btn-group">
-      <%= link_to "Edit Recipe", edit_ingredient_path(@ingredient), class: "btn btn-warning" %>
-      <%= button_to "Delete this Recipe", @ingredient, method: :delete, class: "btn btn-danger"%>
+    <div class="d-flex justify-content-center">
+      <%= link_to "Edit Recipe", edit_ingredient_path(@ingredient), class: "btn btn-warning"%> |
+      <%= button_to "Delete this Recipe", @ingredient, method: :delete, class: "btn btn-warning", data: { turbo_confirm: "Are you sure you want to permanantly delete this recipe?"}%>
     </div>
 
   <%end%>

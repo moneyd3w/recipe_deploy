@@ -10,7 +10,6 @@
   </div>
 <% end %>
 
-
 <div class="d-flex align-items-center justify-content-center">
   <h1>Recipe Anonymous</h1>
   <br>
@@ -26,73 +25,126 @@
   
 <br>
 
-<div class="d-flex align-items-center justify-content-center">
-  <div class="input-group rounded" style="max-width: 65rem;">
-    <input type="search" class="form-control rounded-10 border-0" placeholder="Search For Recipe" aria-label="Search" aria-describedby="search-addon" />
-    <span class="input-group-text border-0" id="search-addon">
-    <i class="fas fa-search"></i>
-    </span>
-
-  </div>
-  <a href="/view">
-    <button id="search-recipes" class="btn btn-primary" type="button" onclick="search_recipes()">Search Recipes</button>
-  </a>
+<div class="container col-md-4 align-items-center justify-content-center">
+  <%= form_tag(ingredientview_path, method: :get, class: "d-flex justify-content-between") do %>
+      <%= text_field_tag(:param1, nil, class: "form-control", placeholder: "Input recipe name here") %>
+      <%= submit_tag("Search", class: "btn btn-dark") %>
+  <% end %>
 </div>
 
+<br>
+<hr>
+<br>
+<div class="text-center container col-md-7">
+  <h4>About Us</h4>
+  <p>
+    Recipe Anonymous is a unique recipe sharing platform that 
+    aims to shift the focus of recipe sharing away from the 
+    difficulties of modern websites back to the food. Our objective
+    is to connect all cooks around the world so they can spread their food innovations. 
+  </p>
+</div>
+<hr>
+<br>
 <style>
   .input-group {
-    border: 2px solid black; /* Adjust the border thickness as per your preference */
+    border: 2px solid black; 
   }
 </style>
+
 <head>
   <link rel="icon" type="image/x-icon" href="/images/pizza-outline.svg">
 </head>
 
 <body>
 
-  <br>
-  <center>
-    <h4>Latest Recipe!</h4>
-  </center>
-  <br>
+<br>
+<center>
+  <h4>Check out these Recipes!</h4>
+</center>
+<br>
 
-  <style>
-    .card {
-      width: 65rem; /* Adjust the width as per your preference */
-      height: auto; /* This will adjust the height automatically based on content */
-    }
-  </style>
+<style>
+  .card {
+    width: 65rem; 
+    height: auto; 
+  }
+</style>
 
+<div class="container">
   <div class="d-flex align-items-center justify-content-center">
-    <a href="/view" class="d-block mx-auto">
-      <div class="card shadow-sm">
-        <%= image_tag "food1.jpg" %>
-        <div class="card-body">
-          <h5 class="card-title">Food title</h5>
-          <p class="card-text">Food description.</p>
-          <div class="d-flex justify-content-between align-items-center">
-            <div class="btn-group">
-              <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+        <div class="card shadow-sm text-light bg-dark" >
+          <div class="card-header text-center bg-light text-dark">
+            Featured
+          </div>
+          <% if @set_ingredient.user_shot_url %>
+            <div class="image-container" style="width: 100%; padding-bottom: 70%; position: relative; overflow: hidden;">
+              <%= image_tag @set_ingredient.user_shot_url, class: "restricted-image", style: "width: 100%; height: 100%; position: absolute; object-fit: cover;" %>
             </div>
-            <small class="text-body-secondary">9 mins</small>
+          <% end %>
+          <div class="card-body">
+            <h5 class="card-title"><%= @set_ingredient.name %></h5>
+            <p class="card-text"><%= @set_ingredient.description %></p>
+            <div class="btn-group btn-dark">
+              <%= link_to "View", @set_ingredient, class: "btn btn-sm btn-outline-secondary", role: "button" %>
+            </div>
+          </div>
+      </div>
+
+      <div style="width: 5%;"></div>
+
+        <div class="card shadow-sm text-light bg-dark" >
+          <div class="card-header text-center bg-light text-dark">
+            Latest Recipe
+          </div>
+          <% if @latest_ingredient.user_shot_url %>
+            <div class="image-container" style="width: 100%; padding-bottom: 70%; position: relative; overflow: hidden;">
+              <%= image_tag @latest_ingredient.user_shot_url, class: "restricted-image", style: "width: 100%; height: 100%; position: absolute; object-fit: cover;" %>
+            </div>
+          <% end %>
+          <div class="card-body">
+          <h5 class="card-title"><%= @latest_ingredient.name %></h5>
+          <p class="card-text"><%= @latest_ingredient.description %></p>
+          <div class="btn-group btn-dark">
+            <%= link_to "View", @latest_ingredient, class: "btn btn-sm btn-outline-secondary", role: "button" %>
           </div>
         </div>
       </div>
-    </a>
+
+      <div style="width: 5%;"></div>
+
+        <div class="card shadow-sm text-light bg-dark" >
+          <div class="card-header text-center bg-light text-dark">
+            Random Recipe
+          </div>
+          <% if @random_ingredient.user_shot_url %>
+            <div class="image-container" style="width: 100%; padding-bottom: 70%; position: relative; overflow: hidden;">
+              <%= image_tag @random_ingredient.user_shot_url, class: "restricted-image", style: "width: 100%; height: 100%; position: absolute; object-fit: cover;" %>
+            </div>
+          <% end %>
+          <div class="card-body">
+          <h5 class="card-title"><%= @random_ingredient.name %></h5>
+          <p class="card-text"><%= @random_ingredient.description %></p>
+          <div class="btn-group btn-dark">
+            <%= link_to "View", @random_ingredient, class: "btn btn-sm btn-outline-secondary", role: "button" %>
+          </div>
+      </div>
+    </div>
   </div>
-  <br>
-  <center><h4>About Us</h4></center>
-  <center>
-  <p>
-  Recipe Anonymous is a unique recipe sharing platform that 
-  aims to shift the focus of recipe sharing away from the 
-  difficulties of modern websites back to the food. Our objective
-  is to connect all cooks around the world so they can spread their food innovations. 
-  </p>
-  </center>
+</div>
 
+<br>
+<br>
 
-  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+<style>
+  .card-text {
+    max-height: 3 * 1.2em; /* Adjust the line height as needed */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1; /* Limit the number of lines */
+    -webkit-box-orient: vertical;
+  }
+</style>
 
 </body>

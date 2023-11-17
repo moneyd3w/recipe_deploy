@@ -1,10 +1,16 @@
-<h1>Editing recipe</h1>
+<div class="container col-md-7">
+  <div class="text-center">
+  <h1>Editing recipe</h1>
+  </div>
 
-<%= render "form", ingredient: @ingredient %>
+  <%= render "form", ingredient: @ingredient %>
 
-<br>
+  <br>
+<div class="text-center">
+  <div>
+    <%= link_to "Show this ingredient", @ingredient, class: "btn btn-warning"%> |
+    <%= link_to "Back to ingredient", ingredients_path, class: "btn btn-warning"%>
+  </div>
+</div>
 
-<div>
-  <%= link_to "Show this ingredient", @ingredient %> |
-  <%= link_to "Back to ingredient", ingredients_path %>
 </div>

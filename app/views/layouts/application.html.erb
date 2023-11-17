@@ -14,10 +14,15 @@
   </head>
 
   <body>
-    <div class="container-fluid">
+    <div class="container-fluid p-0">
       <%= render partial: 'layouts/navbar' %>
+      <br>
       <%= render partial: 'layouts/flash'%>
-      <%= yield %>
+      <div class="container-fluid">
+        <%= yield %>
+      </div>
+      <br>
+      <br>
     </div>
   </body>
 </html>

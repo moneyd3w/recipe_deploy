@@ -1,7 +1,13 @@
 class IngredientsController < ApplicationController
-  before_action :set_ingredient, only: %i[ show edit update destroy ]
+  before_action :set_ingredient,  only: %i[ show edit update destroy ]
   def index
     @ingredients = Ingredient.all
+    if params[:param1].present?
+      @ingredients = filtered_ingredient(params[:param1], params[:param2])
+    end
+    if params[:param2].present? and !@ingredients.nil? and params[:param2] != 'Any'
+      @ingredients = @ingredients.where(my_type_column: params[:param2])
+    end
   end
   
   def show
@@ -66,6 +72,14 @@ class IngredientsController < ApplicationController
     end
 
     def ingredient_params
-      params.require(:ingredient).permit(:name, :my_type_column, :description, :recipe, :instructions)
+      params.require(:ingredient).permit(:user_shot, :name, :my_type_column, :description, :recipe, :instructions)
+    end
+
+    def filtered_ingredient(name)
+      if name.present?
+        Ingredient.where("name LIKE ?", "%#{name}%")
+      else
+        Ingredient.all
+      end
     end
 end

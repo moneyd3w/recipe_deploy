@@ -8,32 +8,23 @@
 **PostgreSQL**: 14.9  
 
 ## MVC Description
-**Model**  
-**View**  
-**Controller**  
 
-**This is test pull request in git**
+### **Model**  
+* Users - for posting recipes
+* Ingredients - for recipes  
 
+### **View**  
+* main - home, surprise page
+* admin - ingredient/user management page
+* ingredient - view, create, edit recipe page
+* session - login/logout and self user management page
+* registration - signup page
+* layouts - global
 
-
-## add later
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* System dependenciestestgit
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+### **Controller**  
+* main - manage which recipe to display in home/surprise page
+* application - check session cookie (logged in?)
+* admin - get/post and delete request for users/ingredients
+* ingredients - get, post, and delete request for ingredients (only if user_id = ingredient.user_id)
+* session - get, delete for self ingredient and get/post and delete for self user
+* registration - post new user

@@ -1,19 +1,32 @@
 <p style="color: green"><%= notice %></p>
+<div class="d-flex align-items-center justify-content-center">
+  <h1>Recipes</h1>
+</div>
 
-<h1>Recipes</h1>
+<br>
+<div class="d-flex align-items-center justify-content-center">
+  <%= form_tag(ingredientview_path, method: :get, class: "d-flex justify-content-between") do %>
+    <%= select_tag(:param2, options_for_select(['Any', 'Breakfast', 'Lunch', 'Dinner', 'Dessert']), class: "form-control bg-light", style: "width: 30%;") %>
+    <%= text_field_tag(:param1, nil, class: "form-control", placeholder: "Input recipe name here", style: "width: 60%;") %>
+    <%= submit_tag("Search", class: "btn btn-dark") %>
+  <% end %>
+</div>
 
+<br>
 
 <div class="album py-5 bg-body-tertiary">
   <div class="container">
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
       <% @ingredients.each do |ingredient| %>
         <div id="<%= dom_id(ingredient) %>" class="col">
-          <div class="card shadow-sm" >
-            <%= image_tag "food1.jpg" %>
+          <div class="card shadow-sm text-light bg-dark  aspect-ratio-16x9" >
+            <div class="image-container" style="width: 100%; padding-bottom: 70%; position: relative; overflow: hidden;">
+              <%= image_tag ingredient.user_shot_url, class: "restricted-image", style: "width: 100%; height: 100%; position: absolute; object-fit: cover;" %>
+            </div>
             <div class="card-body">
               <h5 class="card-title"><%= ingredient.name %></h5>
-              <p class="card-text"><%= truncate(ingredient.description, :length => 125) %></p>
-              <div class="btn-group">
+              <p class="card-text"><%= ingredient.description %></p>
+              <div class="btn-group btn-dark">
                 <%= link_to "View", ingredient, class: "btn btn-sm btn-outline-secondary", role: "button" %>
               </div>
             </div>
@@ -30,10 +43,21 @@
 <div class="d-flex align-items-center justify-content-center">
   <%if @user%>
     <a href="/add">
-      <button id="search-recipes" class="btn btn-primary" type="button" onclick="search_recipes()">Create New Recipe</button>
+      <button id="search-recipes" class="btn btn-dark" type="button" onclick="search_recipes()">Create New Recipe</button>
     </a>
   <%end%>
 </div>
 
 <br>
 <br>
+
+<style>
+  .card-text {
+    max-height: 3 * 1.2em; /* Adjust the line height as needed */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1; /* Limit the number of lines */
+    -webkit-box-orient: vertical;
+  }
+</style>

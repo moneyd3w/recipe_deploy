@@ -1,45 +1,60 @@
-<h1>ADMIN-ONLY (INGREDIENTS)</h1>
-<% if flash[:error].present? %>
-    <div class="alert alert-warning">
-        <%= flash[:error] %>
-    </div>
-<% end %>
-<% if flash[:notice].present? %>
-    <div class="alert alert-warning">
-        <%= flash[:notice] %>
-    </div>
-<% end %>
 
-<div class="btn-toolbar mb-3 d-flex justify-content-between" role="toolbar">
-    <div class="btn-group" role="group">
-        <a href="<%= adminuser_path %>" class="btn btn-outline-secondary">Users</a>
-        <a href="<%= adminingredient_path %>" class="btn btn-outline-secondary">Ingredients</a>
+    <div class="text-center">
+        <h1>ADMIN-ONLY (INGREDIENTS)</h1>
     </div>
-    <div class="input-group">
-        <div class="input-group-text" id="btnGroupAddon">Recipe Name</div>
-        <%= form_tag(adminingredient_path, method: :get, class: "d-flex justify-content-between") do %>
-            <%= text_field_tag(:param1, nil, class: "form-control", placeholder: "Input recipe name here") %>
-            <%= submit_tag("Search", class: "btn btn-primary") %>
-        <% end %>
-    </div>
-</div>
+    <br>
 
-<table class="table table-bordered table-striped">   
-    <tr>   
-        <th>ID</th>   
-        <th>userID</th> 
-        <th>name</th>  
-        <th>Created At</th>   
-        
-    </tr>   
-    
-    <% @ingredient_list.each do |ingredients| %>   
+    <div class="btn-toolbar mb-3 d-flex justify-content-between" role="toolbar">
+        <div class="btn-group" role="group">
+            <a href="<%= adminuser_path %>" class="btn btn-outline-secondary">Users</a>
+            <a href="<%= adminingredient_path %>" class="btn btn-outline-secondary">Ingredients</a>
+        </div>
+        <div class="input-group">
+            <div class="input-group-text" id="btnGroupAddon">Recipe Name</div>
+            <%= form_tag(adminingredient_path, method: :get, class: "d-flex justify-content-between") do %>
+                <%= text_field_tag(:param1, nil, class: "form-control", placeholder: "Input recipe name here") %>
+                <%= submit_tag("Search", class: "btn btn-dark") %>
+            <% end %>
+        </div>
+    </div>
+
+    <% if flash[:error].present? %>
+        <div class="alert alert-warning">
+            <%= flash[:error] %>
+        </div>
+    <% end %>
+    <% if flash[:notice].present? %>
+        <div class="alert alert-warning">
+            <%= flash[:notice] %>
+        </div>
+    <% end %>
+
+    <table class="table table-bordered table-striped">   
         <tr>   
-        <td><%= ingredients.id %></td>   
-        <td><%= ingredients.user_infos_id %></td>  
-        <td><%= ingredients.name %></td>   
-        <td><%= ingredients.created_at %></td>   
-        <td><%= button_to 'Delete', admindelingredient_path(param1: ingredients.id), method: :delete, data: { turbo_confirm: "Are you sure you want to permanantly delete this recipe?"} %></td>   
-        </tr>  
-    <% end %>   
-</table>  
+            <th>ID</th>   
+            <th>UserID</th> 
+            <th>Name</th>  
+            <th>Type</th>  
+            <th>Created At</th>   
+            <th>Featured</th>  
+            
+        </tr>   
+        
+        <% @ingredient_list.each do |ingredients| %>   
+            <tr>   
+            <td><%= ingredients.id %></td>   
+            <td><%= ingredients.user_infos_id %></td>  
+            <td><%= ingredients.name %></td>   
+            <td><%= ingredients.my_type_column %></td>  
+            <td><%= ingredients.created_at %></td>  
+            <% if ingredients.featured? %>
+                <td>yes</td>
+            <% else %>
+                <td>no</td>
+            <%end%>
+            
+            <td><%= button_to 'Toggle featured', adminsetingredient_path(param2: ingredients.id), class: "btn btn-warning",method: :post %></td>
+            <td><%= button_to 'Delete', admindelingredient_path(param1: ingredients.id), class: "btn btn-danger", method: :delete, data: { turbo_confirm: "Are you sure you want to permanantly delete this recipe?"} %></td>   
+            </tr>  
+        <% end %>   
+    </table>  

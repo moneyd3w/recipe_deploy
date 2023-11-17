@@ -1,46 +1,51 @@
-<h1>ADMIN-ONLY (USERS)</h1>
-<% if flash[:error].present? %>
-    <div class="alert alert-warning">
-        <%= flash[:error] %>
-    </div>
-<% end %>
-<% if flash[:notice].present? %>
-    <div class="alert alert-warning">
-        <%= flash[:notice] %>
-    </div>
-<% end %>
 
-<div class="btn-toolbar mb-3 d-flex justify-content-between" role="toolbar">
-    <div class="btn-group" role="group">
-        <a href="<%= adminuser_path %>" class="btn btn-outline-secondary">Users</a>
-        <a href="<%= adminingredient_path %>" class="btn btn-outline-secondary">Ingredients</a>
-    </div>
-    <div class="input-group">
-        <div class="input-group-text" id="btnGroupAddon">Username</div>
-        <%= form_tag(adminuser_path, method: :get, class: "d-flex justify-content-between") do %>
-            <%= text_field_tag(:param1, nil, class: "form-control", placeholder: "Input username here") %>
-            <%= submit_tag("Search", class: "btn btn-primary") %>
-        <% end %>
-    </div>
-</div>
+    <div class="text-center">
+        <h1>ADMIN-ONLY (USERS)</h1>
+        </div>
+    <br>
 
-<table class="table table-bordered table-striped">   
-    <tr>   
-        <th>ID</th>   
-        <th>username</th>   
-        <th>Created At</th>   
+    <% if flash[:error].present? %>
+        <div class="alert alert-warning">
+            <%= flash[:error] %>
+        </div>
+    <% end %>
+    <% if flash[:notice].present? %>
+        <div class="alert alert-warning">
+            <%= flash[:notice] %>
+        </div>
+    <% end %>
+
+    <div class="btn-toolbar mb-3 d-flex justify-content-between" role="toolbar">
+        <div class="btn-group" role="group">
+            <a href="<%= adminuser_path %>" class="btn btn-outline-secondary">Users</a>
+            <a href="<%= adminingredient_path %>" class="btn btn-outline-secondary">Ingredients</a>
+        </div>
+        <div class="input-group">
+            <div class="input-group-text" id="btnGroupAddon">Username</div>
+            <%= form_tag(adminuser_path, method: :get, class: "d-flex justify-content-between") do %>
+                <%= text_field_tag(:param1, nil, class: "form-control", placeholder: "Input username here") %>
+                <%= submit_tag("Search", class: "btn btn-dark") %>
+            <% end %>
+        </div>
+    </div>
+
+    <table class="table table-bordered table-striped">   
+        <tr>   
+            <th>ID</th>   
+            <th>username</th>   
+            <th>Created At</th>   
+            
+        </tr>   
         
-    </tr>   
-    
-    <% @user_list.each do |user_infos| %>   
-        <% unless user_infos.admin? %>
-            <tr>   
-            <td><%= user_infos.id %></td>   
-            <td><%= user_infos.username %></td>   
-            <td><%= user_infos.created_at %></td>   
-            <td><%= button_to 'Delete', admindeluser_path(param1: user_infos.id), method: :delete, data: { turbo_confirm: "Are you sure you want to permanantly delete this user account?"} %></td>   
-                
-            </tr>  
-        <% end %> 
-    <% end %>   
-</table>  
+        <% @user_list.each do |user_infos| %>   
+            <% unless user_infos.admin? %>
+                <tr>   
+                <td><%= user_infos.id %></td>   
+                <td><%= user_infos.username %></td>   
+                <td><%= user_infos.created_at %></td>   
+                <td><%= button_to 'Delete', admindeluser_path(param1: user_infos.id), class: "btn btn-danger", method: :delete, data: { turbo_confirm: "Are you sure you want to permanantly delete this user account?"} %></td>   
+                    
+                </tr>  
+            <% end %> 
+        <% end %>   
+    </table>  
