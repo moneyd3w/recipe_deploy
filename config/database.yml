@@ -78,7 +78,7 @@ test:
 #
 production:
   <<: *default
-  database: recipe_anonymous2
-  username: recipe_anonymous2_user
-  password: cLMRZA2vEQ7ZrFFpOrrpZIPUMHWaTEp4
+  database: recipe_anonymous2_tlea
+  username: recipe_anonymous2_tlea_user
+  password: VO62OHqRL4dGELC5hV1GWZ7feLgiR14L
   url: <%= ENV['DATABASE_URL'] %>
