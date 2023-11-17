@@ -1,0 +1,51 @@
+<div class="d-flex align-items-center justify-content-center">
+  <h4>Didn't find what you were looking for? Try some inspiration from YouTube:</h4>
+</div>
+<%= form_tag(search_youtube_path, method: :get, id: 'search-form') do %>
+  <div class="d-flex align-items-center justify-content-center">
+    <div class="input-group rounded" style="max-width: 40rem;">
+      <%= text_field_tag :search, nil, class: "form-control rounded-10", placeholder: "Search YouTube", aria_label: "Search", aria_describedby: "search-addon" %>
+      <span class="input-group-text border-0" id="search-addon">
+        <i class="fas fa-search"></i>
+      </span>
+    </div>
+    <%= button_tag "Search Youtube", class: "btn btn-danger", type: "button", id: "search-recipes" %>
+  </div>
+<% end %>
+
+<br>
+<br>
+
+<% if @videoResults.present? %>
+  <h3>Search Results for: <%= @searchParam %></h3>
+  <div class="row">
+    <% @videoTitles.each_with_index do |title, index| %>
+      <div class="col-md-2 mb-3">
+        <div class="card">
+          <img src="<%= @videoThumbnailURLs[index] %>" class="card-img-top" alt="Video Thumbnail">
+          <div class="card-body">
+            <h6 class="card-title"><%= link_to title, @videoURLs[index], target: "_blank" %></h6>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% else %>
+  <p>No search results available.</p>
+<% end %>
+
+<br>
+<br>
+
+<%= link_to "Back to view recipes", "/view", class: 'btn btn-dark' %>
+
+<style>
+  .card-title {
+    max-height: 3 * 1.2em; /* Adjust the line height as needed */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1; /* Limit the number of lines */
+    -webkit-box-orient: vertical;
+  }
+</style>

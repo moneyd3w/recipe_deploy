@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   get 'home', to: 'main#home' # home_path for erb
   get 'add', to: 'ingredients#new'
   get 'view', to: 'ingredients#index'
+  
+  get '/search_youtube', to: 'ingredients#search_youtube', as: :search_youtube
 
   get 'surprise', to: 'main#surprise' 
   get 'randingredient', to: 'main#randingredient'

@@ -9,6 +9,7 @@ class MainController < ApplicationController
     if @random_ingredient.nil?
       @random_ingredient = Ingredient.new
     end
+
   end
 
   def surprise

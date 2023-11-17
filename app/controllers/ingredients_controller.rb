@@ -1,3 +1,8 @@
+require 'uri'
+require 'json'
+NUMBER_OF_RESULTS = 12
+FIRST_KEY = 'AIzaSyA-bngBG_QfLISXrjlXZWIy7Rz5RDJwA28'
+SECOND_KEY = 'AIzaSyCI86eDkVO3SvBk0yCNuuPi8RkNSPrsX6c'
 class IngredientsController < ApplicationController
   before_action :set_ingredient,  only: %i[ show edit update destroy ]
   def index
@@ -10,6 +15,40 @@ class IngredientsController < ApplicationController
     end
   end
   
+  def search_youtube
+    uri = URI("https://www.googleapis.com/youtube/v3/search") #base url
+    @searchParam = params[:search] || "dinner ideas"
+
+    @params = {
+      key: SECOND_KEY,
+      part: 'snippet',
+      q: @searchParam,
+      maxResults: NUMBER_OF_RESULTS
+    }
+
+    uri.query = URI.encode_www_form(@params)
+    response = HTTParty.get(uri)
+    @data = JSON.parse(response.body)
+
+    @videoResults = @data['items']
+
+    
+    if @videoResults.nil?
+      @videoURLs = []
+      @videoThumbnailURLs = []
+      @videoTitles = []
+    else
+      @videoIDs = @videoResults.map { |video| video['id']['videoId'] }
+      @videoURLs = @videoIDs.map { |video_id| "https://www.youtube.com/watch?v=#{video_id}" }
+      @videoThumbnailURLs = @videoResults.map { |video| video['snippet']['thumbnails']['high']['url'] }
+      @videoTitles = @videoResults.map { |title| title['snippet']['title']}
+    end
+
+
+
+    render :youtube
+  end
+
   def show
   end
 
