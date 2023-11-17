@@ -17,7 +17,11 @@ class IngredientsController < ApplicationController
   
   def search_youtube
     uri = URI("https://www.googleapis.com/youtube/v3/search") #base url
-    @searchParam = params[:search] || "dinner ideas"
+    if params[:search].nil?
+      @searchParam = "Dinner Recipes"
+    else
+      @searchParam = params[:search] + " recipe"
+    end
 
     @params = {
       key: SECOND_KEY,
